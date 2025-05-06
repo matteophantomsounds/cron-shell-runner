@@ -1,0 +1,12 @@
+services:
+  - type: cron
+    name: embed-pending-grants
+    env: docker
+    schedule: "*/5 * * * *"
+    plan: free
+    startCommand: >
+      curl -X POST https://slvvkambrtkiycgammaz.functions.supabase.co/embed_pending_grants
+      -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY"
+    envVars:
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
